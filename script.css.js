@@ -1,6 +1,6 @@
 let can = document.getElementById('can')
 let con =can.getContext('2d');
-//ブロック一つのサイズ（ピクセル）
+//ブロック一つのサイズ（ピクセル）;
 const BLOCK_SIZE = 30;
 
 //落ちるスピード
@@ -48,9 +48,9 @@ const tetroTypes = [
         ],
     [
         [0,0,0,0],
-        [1,1,0,0],
-        [1,1,0,0],
-        [1,1,0,0]
+        [0,1,1,0],
+        [0,1,1,0],
+        [0,0,0,0]
     ],
     [
         [0,0,0,0],
@@ -76,6 +76,13 @@ const tetroTypes = [
         [0,1,1,0],
         [0,0,0,0]
     ],
+    [
+        [0,0,1,0],
+        [0,0,1,0],
+        [0,1,1,0],
+        [0,0,0,0]
+    ]
+
 ];
 
 const start_x = FIELD_COL/2;
@@ -120,28 +127,26 @@ function drawBlock(x,y,c)
     con.fillRect(px, py, BLOCK_SIZE, BLOCK_SIZE);
     con.strokeStyle = 'black';
     con.strokeRect(px, py, BLOCK_SIZE, BLOCK_SIZE);
-
 }
 function drawField() {
-    con.clearRect(0,0,SCREEN_W,SCREEN_H);
+    con.clearRect(0, 0, SCREEN_W, SCREEN_H);
     for (let y = 0; y < FIELD_ROW; y++) {
         for (let x = 0; x < FIELD_COL; x++) {
             if (field[y][x]) {
-            drawBlock(x,y,field[y][x]);
+                drawBlock(x, y, field[y][x]);
             }
         }
     }
-    if (over)
-    {
-        let s="GAME OVER";
-        con.font="40px 'MS ゴシック'";
+    if (over) {
+        let s = "GAME OVER";
+        con.font = "40px 'MS ゴシック'";
         let w = con.measureText(s).width;
-        let x=SCREEN_W/2-w/2;
-        let y=SCREEN_H/2-20;
-        con.lineWidth=4;
-        con.strokeText(s.x.y);
-        con.fillStyle='white';
-        con.fillText(s.x.y);
+        let x = SCREEN_W / 2 - w / 2;
+        let y = SCREEN_H / 2 - 20;
+        con.lineWidth = 4;
+        con.strokeText(s,x,y);
+        con.fillStyle = 'white';
+        con.fillText(s,x,y);
 
     }
 }
